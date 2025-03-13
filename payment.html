@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .payment-box {
+            width: 200px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .payment-box:hover {
+            background-color: #ddd;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        #info-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Pilih Metode Pembayaran</h2>
+
+    <div class="container">
+        <!-- QRIS -->
+        <div class="payment-box" onclick="showInfo('qris')">
+            <img src="https://i.postimg.cc/CMby2zq8/images-1.png" alt="QRIS">
+            <p>QRIS</p>
+        </div>
+
+        <!-- Dana -->
+        <div class="payment-box" onclick="showInfo('dana')">
+            <img src="https://i.postimg.cc/R0G4gTtN/images-4.jpg" alt="Dana">
+            <p>Dana</p>
+        </div>
+    </div>
+
+    <div id="info-box">
+        <p id="info-text"></p>
+        <button id="copy-button" onclick="copyToClipboard()">Salin</button>
+    </div>
+
+    <script>
+        function showInfo(type) {
+            var infoBox = document.getElementById("info-box");
+            var infoText = document.getElementById("info-text");
+            var copyButton = document.getElementById("copy-button");
+
+            if (type === "dana") {
+                infoText.textContent = "Nomor Dana: 085816285236";
+                copyButton.style.display = "block";
+            } else if (type === "qris") {
+                infoText.textContent = "Silakan hubungi admin untuk QRIS.";
+                copyButton.style.display = "none";
+            }
+            
+            infoBox.style.display = "block";
+        }
+
+        function copyToClipboard() {
+            var text = "085816285236";
+            var tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Nomor Dana berhasil disalin!");
+        }
+    </script>
+
+</body>
+</html>
